@@ -1,10 +1,9 @@
-var findPackage = require('../index');
 var packageJSON = require('../package.json');
 var expect = require('chai').expect;
 
-describe('A test suite for the find-package module', function() {
-  before(function(){
-    this.packageFound = findPackage();
+describe('A test suite for the find-package module without paths option', function() {
+  before(function() {
+    this.packageFound = require('../index')(__dirname);
   });
 
   it('should have the same properties as the package.json', function() {

@@ -3,23 +3,21 @@ var packageJSON = require('../package.json');
 var expect = require('chai').expect;
 var path = require('path');
 
-describe('A test suite for the find-package module', function() {
+describe('A test suite for the find-package module with paths option', function() {
   before(function(){
-    this.packageFound = findPackage(true);
+    this.packageFound = findPackage(__dirname, true);
   });
 
   it('should have the same properties as the package.json', function() {
     expect(this.packageFound.name).to.equal(packageJSON.name);
     expect(this.packageFound.version).to.equal(packageJSON.version);
-    expect(packageJSON).to.deep.equal(this.packageFound);
   });
 
   it('should have the paths property', function() {
     var absolutePath = this.packageFound.paths.absolute;
-    var actualPath = process.cwd().substring(0, process.cwd().length -4) + 'package.json';
-    var actualAbsolutePath = process.cwd().substring(0, -4);
+    var actualPath = __dirname + '/package.json';
     expect(this.packageFound).to.have.property('paths');
-    expect(this.packageFound.paths.relative).to.equal(path.relative(process.cwd(), absolutePath));
+    expect(this.packageFound.paths.relative).to.equal(path.relative(__dirname, absolutePath));
     expect(absolutePath).to.equal(actualPath);
   });
 });
