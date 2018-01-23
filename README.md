@@ -30,7 +30,7 @@ console.log(findPackage(__dirname).name);
 If you pass true as the second argument of find-package, the module will add paths object to the package.json. This object will have a `relative` and an `absolute` properties, with the correspondent relative and absolute paths to the package.json. The relative path is relative to the script calling the find-package module:
 
 ```
-var package = require('find-package')(__diname, true);
+var package = require('find-package')(__dirname, true);
 
 package.paths.relative //string with the relative path to package.json
 package.paths.absolute //string with the absolute path to package.json
